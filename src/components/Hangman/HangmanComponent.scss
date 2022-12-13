@@ -18,11 +18,16 @@
         font-family: $paytone-font;
     }
 
-    button {
+    &__button {
         width: 150px;
         height: 50px;
         border-radius: 5px;
         border: 1px solid transparent;
+        transition: all 0.5s;
+        &:hover{
+            background-color: lightgray;
+            width: 200px;
+          }
     }
 
     &__wordGuess {
@@ -49,15 +54,14 @@
         gap: 15px;
         justify-content: center;
         width: 70%;
-        button {
+        &_button {
             height: 40px;
             width: 50px;
             border-radius: 3px;
             border: 1px solid black;
             transition: all 0.2s;
-
             &:active{
-                background-color:lightblue;
+                background-color: $button-guess-letter;
             }
         }
     }
@@ -70,7 +74,7 @@
         span {
             font-size: 30px;
             font-family: $paytone-font;
-            color: rgb(236, 65, 65);
+            color: $span-wrongLetters;
         }
     }
 }

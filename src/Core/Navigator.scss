@@ -1,9 +1,12 @@
-.navigator-container{
-    margin-top: 10px;
+@import "../styles/variables.scss";
+.navigator-container {
+    height: 120px;
+    padding-top: 15px;
     display: flex;
     justify-content: space-around;
+    background-color: $navbackground-color;
 
-    img{
+    img {
         height: 100px;
         width: 100px;
     }
@@ -16,20 +19,18 @@
         a {
             text-decoration: none;
             color: black;
-          &:hover{
-                color: blue;
-            }  
-           
+            &:hover {
+                color: $hover-links-color;
+            }
         }
-        a.active{
-            color: blue;
+        a.active {
+            color: $active-links-color;
         }
-        p{
+        p {
             cursor: pointer;
-            &:hover{
-                color: blue;
+            &:hover {
+                color: $hover-links-color;
             }
         }
     }
 }
-

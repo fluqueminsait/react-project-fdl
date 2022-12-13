@@ -111,7 +111,7 @@ const HangmanComponent = () => {
   return (
     <div className="hangman-container">
       <h2>HANGMAN</h2>
-      <button onClick={()=> game()}>{!btnGame ? "Empezar Juego" : "Finalizar Juego"}</button>
+      <button className="hangman-container__button" onClick={()=> game()}>{!btnGame ? "Empezar Juego" : "Finalizar Juego"}</button>
       {!btnGame ? "" : <div className="prueba">
       <div className="hangman-container__wordGuess">
         <div className="hangman-container__wordGuess__secretWord"> TE QUEDAN {att} INTENTOS</div>
@@ -120,7 +120,7 @@ const HangmanComponent = () => {
       <div className="hangman-container__btnWrapper">
         {LETTERSALPH.map((btnLetter, index) => {
           return (
-            <button key={index} onClick={() => checkLetter(btnLetter)}>
+            <button className="hangman-container__btnWrapper_button" key={index} onClick={() => checkLetter(btnLetter)}>
               {btnLetter}
             </button>
           );
