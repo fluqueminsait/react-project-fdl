@@ -1,0 +1,37 @@
+@import "../../styles/variables.scss";
+
+.home-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    h3 {
+        font-family: $paytone-font;
+        font-size: 45px;
+    }
+
+    h4{
+        font-family: $paytone-font;
+        font-size: 24px;
+    }
+
+    p {
+        font-family: $indie-font;
+        font-size: 27px;
+        cursor: pointer;
+        &:hover {
+            color: blue;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        &:hover {
+            color: blue;
+        }
+    }
+}
