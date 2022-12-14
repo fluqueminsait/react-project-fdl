@@ -7,13 +7,22 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    margin-top: 20px;
+
+    h1 {
+        color: black;
+        font-size: 56px;
+        margin: 0;
+        font-family: $paytone-font;
+        font-weight: 400;
+    }
 
     h3 {
         font-family: $paytone-font;
         font-size: 45px;
     }
 
-    h4{
+    h4 {
         font-family: $paytone-font;
         font-size: 24px;
     }
@@ -22,6 +31,7 @@
         font-family: $indie-font;
         font-size: 27px;
         cursor: pointer;
+
         &:hover {
             color: blue;
         }
@@ -30,6 +40,7 @@
     a {
         text-decoration: none;
         color: black;
+
         &:hover {
             color: blue;
         }

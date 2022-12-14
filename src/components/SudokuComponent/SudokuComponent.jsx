@@ -1,7 +1,7 @@
 import "./SudokuComponent.scss"
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import SudokuGame from 'sudoku-react-component';
-import {  makepuzzle, solvepuzzle} from 'sudoku';
+
 
 const SudokuComponent = () => {
    

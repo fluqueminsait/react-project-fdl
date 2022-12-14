@@ -10,21 +10,32 @@ const Navigator = () => {
       </Link>
       <ul>
         <li>
-          <NavLink exact="true" activeclassname="active"  to="/">HOME</NavLink>
+          <NavLink exact="true" activeclassname="active" to="/">
+            HOME
+          </NavLink>
         </li>
         <li>
-        <NavLink exact="true" activeclassname="active" to="/tateti">TA TE TI</NavLink>
+          <NavLink exact="true" activeclassname="active" to="/tateti">
+            TA TE TI
+          </NavLink>
         </li>
         <li>
-        <NavLink exact="true" activeclassname="active"  to="/hangman">HANGMAN</NavLink>
+          <NavLink exact="true" activeclassname="active" to="/hangman">
+            HANGMAN
+          </NavLink>
         </li>
         <li>
-        <p onClick={()=> alert("ESTE JUEGO ESTA BAJO CONSTRUCCION")}> SUDOKU </p>
+          <p onClick={() => alert("ESTE JUEGO ESTA BAJO CONSTRUCCION")}>
+            {" "}
+            SUDOKU{" "}
+          </p>
         </li>
         <li>
-        <NavLink exact="true" activeclassname="active"  to="/sudoku">SUDOKU DEMO</NavLink>
+          <NavLink exact="true" activeclassname="active" to="/sudoku">
+            SUDOKU DEMO
+          </NavLink>
         </li>
-        </ul>
+      </ul>
     </div>
   );
 };

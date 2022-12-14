@@ -2,6 +2,7 @@ import "./Board.scss";
 import React from "react";
 import { useState, useEffect } from "react";
 import Square from "../Square/Square.jsx";
+import BtnGame from "../BtnGame/BtnGame";
 
 const Board = () => {
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
@@ -112,7 +113,7 @@ const Board = () => {
   return (
     <div className="tictactoe-container">
         <h2>TA TE TI</h2>
-        <button onClick={()=> game()}>{!btnGame ? "Empezar Juego" : "Finalizar Juego"}</button>
+        <BtnGame btnGame={btnGame} game={()=>game()}/>
         <p> {btnGame ? "Es el turno de la " + `${turn}` : ""}</p>
         {!btnGame ? "" :
       <div className="tictactoe-container__board">

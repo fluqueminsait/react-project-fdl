@@ -1,6 +1,7 @@
 import "./HangmanComponent.scss";
 import React from "react";
 import { useState, useEffect } from "react";
+import BtnGame from "../BtnGame/BtnGame";
 
 const WORDS = [
   "MANZANA",
@@ -111,7 +112,7 @@ const HangmanComponent = () => {
   return (
     <div className="hangman-container">
       <h2>HANGMAN</h2>
-      <button className="hangman-container__button" onClick={()=> game()}>{!btnGame ? "Empezar Juego" : "Finalizar Juego"}</button>
+      <BtnGame btnGame={btnGame} game={()=>game()}/>
       {!btnGame ? "" : <div className="prueba">
       <div className="hangman-container__wordGuess">
         <div className="hangman-container__wordGuess__secretWord"> TE QUEDAN {att} INTENTOS</div>

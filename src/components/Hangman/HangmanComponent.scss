@@ -18,17 +18,7 @@
         font-family: $paytone-font;
     }
 
-    &__button {
-        width: 150px;
-        height: 50px;
-        border-radius: 5px;
-        border: 1px solid transparent;
-        transition: all 0.5s;
-        &:hover{
-            background-color: lightgray;
-            width: 200px;
-          }
-    }
+    
 
     &__wordGuess {
         display: flex;
@@ -62,6 +52,9 @@
             transition: all 0.2s;
             &:active{
                 background-color: $button-guess-letter;
+            }
+            &:hover{
+                background-color: lightgray;
             }
         }
     }
