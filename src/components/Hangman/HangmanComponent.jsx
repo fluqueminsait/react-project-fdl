@@ -6,11 +6,10 @@ import BtnGame from "../BtnGame/BtnGame";
 const WORDS = [
   "MANZANA",
   "PERA",
-  "FRESA",
-  "CHOCOLATE",
-  "VAINILLA",
-  "QUESO",
-  "OTORRINOLARINGOLOGO",
+  // "FRESA",
+  // "CHOCOLATE",
+  // "VAINILLA",
+  // "QUESO",
 ];
 let randomWord = WORDS[Math.floor(Math.random() * WORDS.length)];
 const LETTERSALPH = [
@@ -48,14 +47,35 @@ const HangmanComponent = () => {
   const [att, setAtt] = useState(5);
   const [btnGame, setBtnGame] = useState(false);
 
-  const guessWord = randomWord
-    .split("")
-    .map((letter) => (correctLetters.includes(letter) ? letter : "_ "))
-    .join("");
+  const saveWords = () => {
+    localStorage.setItem("wordsArray", JSON.stringify(WORDS));
+  };
+
+  const prueba = JSON.parse(localStorage.getItem("wordsArray"));
+
+  function guessWord() {
+    if (WORDS.length === 0) {
+      prueba.forEach((el) => {
+        WORDS.push(el);
+      });
+      alert("HAS ADIVINADO TODAS LAS PALABRAS, SE REINICIA EL JUEGO");
+      randomWord = WORDS[Math.floor(Math.random() * WORDS.length)];
+    } else {
+      return randomWord
+        .split("")
+        .map((letter) => (correctLetters.includes(letter) ? letter : "_ "))
+        .join("");
+    }
+  }
 
   useEffect(() => {
-    attempts();
+    saveWords();
+  }, []);
+
+  useEffect(() => {
     validateWin();
+    spliceWord();
+    attempts();
   }, [wrongLetters, correctLetters]);
 
   const checkLetter = (lette) => {
@@ -77,63 +97,84 @@ const HangmanComponent = () => {
       setCorrectLetters([]);
       setWrongLetters([]);
       setAtt(5);
-      const randomNumber = Math.floor(Math.random() * WORDS.length);
-      randomWord = WORDS[randomNumber];
+      getRandomWord();
     }
   };
 
   const validateWin = () => {
-    if (randomWord === guessWord) {
+    if (randomWord === guessWord()) {
       setTimeout(() => {
-        alert("ganaste");
+        alert("ADIVINASTE LA PALABRA, PREPARATE PARA LA SUGIENTE");
         setCorrectLetters([]);
         setWrongLetters([]);
         setAtt(5);
+        getRandomWord();
       }, 500);
-
-      const randomNumber = Math.floor(Math.random() * WORDS.length);
-      randomWord = WORDS[randomNumber];
     }
+  };
+
+  const getRandomWord = () => {
+    const randomNumber = Math.floor(Math.random() * WORDS.length);
+    randomWord = WORDS[randomNumber];
   };
 
   const game = () => {
     if (!btnGame) {
       setBtnGame(true);
       setCorrectLetters([]);
-        setWrongLetters([]);
-        setAtt(5);
-        const randomNumber = Math.floor(Math.random() * WORDS.length);
-      randomWord = WORDS[randomNumber];
+      setWrongLetters([]);
+      setAtt(5);
+      getRandomWord();
     } else {
       setBtnGame(false);
+    }
+  };
+
+  const spliceWord = () => {
+    if (WORDS.length >= 1) {
+      WORDS.forEach((word, idx) => {
+        if (word === guessWord()) {
+          WORDS.splice(idx, 1);
+        }
+      });
     }
   };
 
   return (
     <div className="hangman-container">
       <h2>HANGMAN</h2>
-      <BtnGame btnGame={btnGame} game={()=>game()}/>
-      {!btnGame ? "" : <div className="prueba">
-      <div className="hangman-container__wordGuess">
-        <div className="hangman-container__wordGuess__secretWord"> TE QUEDAN {att} INTENTOS</div>
-        <p>{guessWord}</p>
-      </div>
-      <div className="hangman-container__btnWrapper">
-        {LETTERSALPH.map((btnLetter, index) => {
-          return (
-            <button className="hangman-container__btnWrapper_button" key={index} onClick={() => checkLetter(btnLetter)}>
-              {btnLetter}
-            </button>
-          );
-        })}
-      </div>
-      <div className="hangman-container__wrongLetters">
-        <p>WRONG LETTERS</p>
-        {wrongLetters.map((wrongL, index) => {
-          return <span key={index}> {wrongL}</span>;
-        })}
-      </div>
-      </div>}
+      <BtnGame btnGame={btnGame} game={() => game()} />
+      {!btnGame ? (
+        ""
+      ) : (
+        <div className="prueba">
+          <div className="hangman-container__wordGuess">
+            <div className="hangman-container__wordGuess__secretWord">
+              TE QUEDAN {att} INTENTOS
+            </div>
+            <p>{guessWord()}</p>
+          </div>
+          <div className="hangman-container__btnWrapper">
+            {LETTERSALPH.map((btnLetter, index) => {
+              return (
+                <button
+                  className="hangman-container__btnWrapper_button"
+                  key={index}
+                  onClick={() => checkLetter(btnLetter)}
+                >
+                  {btnLetter}
+                </button>
+              );
+            })}
+          </div>
+          <div className="hangman-container__wrongLetters">
+            <p>WRONG LETTERS</p>
+            {wrongLetters.map((wrongL, index) => {
+              return <span key={index}> {wrongL}</span>;
+            })}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

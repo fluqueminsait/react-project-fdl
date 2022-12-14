@@ -38,15 +38,13 @@ const Board = () => {
     }
   }, [result]);
 
- 
-
   const game = () => {
     if (!btnGame) {
       setBtnGame(true);
-      restartGame()
+      restartGame();
     } else {
       setBtnGame(false);
-      restartGame()
+      restartGame();
     }
   };
 
@@ -64,8 +62,8 @@ const Board = () => {
   const chooseSquare = (square) => {
     setBoard(
       board.map((item, index) => {
-        if (index === square && item === "" ) {
-          setBefore(turn)
+        if (index === square && item === "") {
+          setBefore(turn);
           return turn;
         }
         return item;
@@ -87,43 +85,50 @@ const Board = () => {
         setTimeout(() => {
           setResult({ winner: turn, state: "WON" });
         }, 200);
-        
       }
     });
   };
 
   const validateTie = () => {
     let itsTie = true;
-    board.forEach((square)=> {
-        if (square === ""){
-            itsTie = false;
-        }
-    } )
+    board.forEach((square) => {
+      if (square === "") {
+        itsTie = false;
+      }
+    });
     if (itsTie) {
-        setResult({ winner: "Its a Tie", state: "Tie" });
+      setResult({ winner: "Its a Tie", state: "Tie" });
     }
-  }
+  };
 
   const restartGame = () => {
     setBoard(["", "", "", "", "", "", "", "", ""]);
     setTurn("X");
-    setBefore("O")
+    setBefore("O");
   };
 
   return (
     <div className="tictactoe-container">
-        <h2>TA TE TI</h2>
-        <BtnGame btnGame={btnGame} game={()=>game()}/>
-        <p> {btnGame ? "Es el turno de la " + `${turn}` : ""}</p>
-        {!btnGame ? "" :
-      <div className="tictactoe-container__board">
-        <div className="tictactoe-container__board__row">{createSquares([0, 1, 2])}</div>
-        <div className="tictactoe-container__board__row">{createSquares([3, 4, 5])}</div>
-        <div className="tictactoe-container__board__row">{createSquares([6, 7, 8])}</div>
-      </div>}
+      <h2>TA TE TI</h2>
+      <BtnGame btnGame={btnGame} game={() => game()} />
+      <p> {btnGame ? "Es el turno de la " + `${turn}` : ""}</p>
+      {!btnGame ? (
+        ""
+      ) : (
+        <div className="tictactoe-container__board">
+          <div className="tictactoe-container__board__row">
+            {createSquares([0, 1, 2])}
+          </div>
+          <div className="tictactoe-container__board__row">
+            {createSquares([3, 4, 5])}
+          </div>
+          <div className="tictactoe-container__board__row">
+            {createSquares([6, 7, 8])}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
 export default Board;
-

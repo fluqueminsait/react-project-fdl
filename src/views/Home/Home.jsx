@@ -26,7 +26,6 @@ const Home = () => {
     }, 4000);
   }, []);
 
-
   return (
     <>
       <div className="home-container">
@@ -45,10 +44,7 @@ const Home = () => {
         <p>
           <Link to="/hangman">HANGMAN</Link>
         </p>
-        <p onClick={() => alert("ESTE JUEGO ESTA BAJO CONSTRUCCION")}>
-          {" "}
-          SUDOKU{" "}
-        </p>
+        <p onClick={() => alert("ESTE JUEGO ESTA BAJO CONSTRUCCION")}>SUDOKU</p>
       </div>
     </>
   );
